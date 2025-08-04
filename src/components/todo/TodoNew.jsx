@@ -6,10 +6,10 @@ const TodoNew = (props) =>{
     const {addNewTodo} = props;
     const handleClick = () =>{
       console.log(text)
+      addNewTodo(text);
     }
     const handleOnChange = (e) =>{
       setText(e);
-     
     }
     return (<div>
       <div className="add-block">
