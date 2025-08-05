@@ -6,21 +6,8 @@ import logo from "./assets/react.svg";
 import { useState } from "react";
 const App = () =>{
 
-  const [todos,setTodos] = useState([
-    {
-      id:1,
-      name:"Learning React "
-    },
-    {
-      id:2,
-      name:"Watching Youtube "
-    },
-  ]);
-  const name = "quangit";
-  const data = {
-    address:"hanoi",
-    age:24
-  };
+  const [todos,setTodos] = useState([]);
+ 
   const addNewTodo = (name) =>{
     const newTodo = {
       id:getRandomArbitrary(1,1000000000),
@@ -34,7 +21,7 @@ const App = () =>{
   return <div className="todo-container">
     <div className="todo-title">Todo list</div>
     <TodoNew addNewTodo={addNewTodo}/>
-    <TodoData name={name} data={data} todos ={todos}/>
+    <TodoData todos ={todos}/>
     <div className="todo-image">
       <img src={logo} alt="" className="logo" />
     </div>
