@@ -7,7 +7,6 @@ import { useState } from "react";
 const App = () =>{
 
   const [todos,setTodos] = useState([]);
- 
   const addNewTodo = (name) =>{
     const newTodo = {
       id:getRandomArbitrary(1,1000000000),
@@ -21,10 +20,11 @@ const App = () =>{
   return <div className="todo-container">
     <div className="todo-title">Todo list</div>
     <TodoNew addNewTodo={addNewTodo}/>
-    <TodoData todos ={todos}/>
-    <div className="todo-image">
+    {todos.length > 0 ?<TodoData todos ={todos}/>
+    :  <div className="todo-image">
       <img src={logo} alt="" className="logo" />
     </div>
+  }
   </div>
 }
 
