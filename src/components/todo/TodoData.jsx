@@ -1,18 +1,22 @@
-
-const TodoData = (p) =>{
-  const {todos} = p;
+const TodoData = (p) => {
+    const { todos, deleteTodo } = p;
     return (
-    <div className="todo-data">
-      {todos.map((item,index) => {
-        console.log(item,index);
-      return (
-      <div className={`todo-item ${index}`}  key={item.id}>
-          <div>{item.name}</div>
-          <button>Delete</button>
+        <div className="todo-data">
+            {todos.map((item, index) => {
+                console.log(item, index);
+                return (
+                    <div className={`todo-item ${index}`} key={item.id}>
+                        <div>{item.name}</div>
+                        <button
+                            onClick={() => {
+                                deleteTodo(item.id);
+                            }}>
+                            Delete
+                        </button>
+                    </div>
+                );
+            })}
         </div>
-      );
-      })}
-     
-    </div>);
-}
+    );
+};
 export default TodoData;
