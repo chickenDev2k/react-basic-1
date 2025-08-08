@@ -3,6 +3,8 @@ import TodoNew from "./components/todo/TodoNew";
 import TodoData from "./components/todo/TodoData";
 import logo from "./assets/react.svg";
 import { useState } from "react";
+import Header from "./components/layout/header";
+import Footer from "./components/layout/footer";
 const App = () => {
     const [todos, setTodos] = useState([]);
     function getRandomArbitrary(min, max) {
@@ -22,17 +24,22 @@ const App = () => {
     };
 
     return (
-        <div className="todo-container">
-            <div className="todo-title">Todo list</div>
-            <TodoNew addNewTodo={addNewTodo} />
-            {todos.length > 0 ? (
-                <TodoData todos={todos} deleteTodo={deleteTodo} />
-            ) : (
-                <div className="todo-image">
-                    <img src={logo} alt="" className="logo" />
-                </div>
-            )}
-        </div>
+        <>
+            <Header />
+            <div className="todo-container">
+                <div className="todo-title">Todo list</div>
+                <TodoNew addNewTodo={addNewTodo} />
+                {todos.length > 0 ? (
+                    <TodoData todos={todos} deleteTodo={deleteTodo} />
+                ) : (
+                    <div className="todo-image">
+                        <img src={logo} alt="" className="logo" />
+                    </div>
+                )}
+            </div>
+
+            <Footer />
+        </>
     );
 };
 
