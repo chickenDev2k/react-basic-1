@@ -1,4 +1,3 @@
-import "./App.css";
 import "./components/todo/todo.css";
 import TodoNew from "./components/todo/TodoNew";
 import TodoData from "./components/todo/TodoData";
