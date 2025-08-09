@@ -11,6 +11,7 @@ import BookPage from "./pages/book.jsx";
 import "./styles/global.css";
 import TodoApp from "./components/todo/TodoApp.jsx";
 import ErrorPage from "./pages/error.jsx";
+import "@ant-design/v5-patch-for-react-19";
 const router = createBrowserRouter([
     {
         path: "/",
