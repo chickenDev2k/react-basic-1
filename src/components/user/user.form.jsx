@@ -2,7 +2,7 @@ import { Input, Button, notification, Modal } from "antd";
 import { useState } from "react";
 import { createUserAPI } from "../../services/api.service";
 
-const UserForm = () => {
+const UserForm = ({ loadUser }) => {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -16,7 +16,8 @@ const UserForm = () => {
                 message: "create user",
                 description: "tao user thanh cong",
             });
-            setIsModalOpen(false);
+            resetAndCloseModal();
+            await loadUser();
             console.log(res);
         } else {
             notification.error({
@@ -25,6 +26,14 @@ const UserForm = () => {
             });
         }
         console.log(">>>check state:", { fullName, email, password, phone });
+    };
+
+    const resetAndCloseModal = () => {
+        setIsModalOpen(false);
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
     };
     return (
         <div className="user-form" style={{ margin: "20px " }}>
