@@ -4,7 +4,7 @@ const TodoNew = (props) => {
     const [text, setText] = useState("");
     const { addNewTodo } = props;
     const handleClick = () => {
-        console.log(text);
+        text;
         if (text.length > 0) {
             addNewTodo(text);
             setText("");

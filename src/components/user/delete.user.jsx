@@ -1,7 +1,6 @@
 import { Button, notification, Popconfirm } from "antd";
 import { deleteUserAPI } from "../../services/api.service";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useEffect } from "react";
 
 const DeleteUser = ({ userDetail, loadUser }) => {
     const confirm = async (id) => {
@@ -13,7 +12,8 @@ const DeleteUser = ({ userDetail, loadUser }) => {
             });
 
             await loadUser();
-            console.log(res);
+
+            res;
         } else {
             notification.error({
                 message: "error delete user",
