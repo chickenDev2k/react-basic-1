@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
 import { Button, Space, Table, Tag } from "antd";
-import { fetchAllUserAPI } from "../../services/api.service";
 import UpdateUserModal from "./UpdateUserModal";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import ViewUserDetail from "./view.user.detail";
 import { Link } from "react-router-dom";
 import DeleteUser from "./delete.user";
+import { useState } from "react";
 const UserTable = ({ dataUser, loadUser }) => {
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
@@ -13,6 +12,12 @@ const UserTable = ({ dataUser, loadUser }) => {
     const [isShowDetail, setIsShowDetail] = useState(false);
 
     const columns = [
+        {
+            title: "STT",
+            render: (id, record, index) => {
+                return <>{index + 1}</>;
+            },
+        },
         {
             title: "Id",
             dataIndex: "_id",
@@ -46,7 +51,8 @@ const UserTable = ({ dataUser, loadUser }) => {
                         onClick={() => {
                             setIsModalUpdateOpen(true);
                             setDataUpdate(record);
-                            console.log(record);
+
+                            record;
                         }}
                         style={{ cursor: "pointer", color: "orange" }}
                     />
@@ -71,6 +77,7 @@ const UserTable = ({ dataUser, loadUser }) => {
                 setUserDetail={setUserDetail}
                 isShowDetail={isShowDetail}
                 setIsShowDetail={setIsShowDetail}
+                loadUser={loadUser}
             />
         </>
     );

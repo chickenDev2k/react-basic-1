@@ -18,14 +18,16 @@ const UserForm = ({ loadUser }) => {
             });
             resetAndCloseModal();
             await loadUser();
-            console.log(res);
+
+            res;
         } else {
             notification.error({
                 message: "error create user",
                 description: JSON.stringify(res.message),
             });
         }
-        console.log(">>>check state:", { fullName, email, password, phone });
+
+        ">>>check state:", { fullName, email, password, phone };
     };
 
     const resetAndCloseModal = () => {

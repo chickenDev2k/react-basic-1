@@ -1,6 +1,6 @@
 import { Input, Modal, notification } from "antd";
 import { useEffect, useState } from "react";
-import { data } from "react-router-dom";
+
 import { updateUserAPI } from "../../services/api.service";
 
 const UpdateUserModal = ({
@@ -32,14 +32,16 @@ const UpdateUserModal = ({
             });
             resetAndCloseModal();
             await loadUser();
-            console.log(res);
+
+            res;
         } else {
             notification.error({
                 message: "error update user",
                 description: JSON.stringify(res.message),
             });
         }
-        console.log(">>>check state:", { fullName, email, password, phone });
+
+        ">>>check state:", { fullName, email, password, phone };
     };
 
     const resetAndCloseModal = () => {
