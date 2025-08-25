@@ -5,7 +5,7 @@ import ViewUserDetail from "./view.user.detail";
 import { Link } from "react-router-dom";
 import DeleteUser from "./delete.user";
 import { useState } from "react";
-const UserTable = ({ dataUser, loadUser }) => {
+const UserTable = ({ dataUser, loadUser, current, pageSize, total, setCurrent, setPageSize }) => {
     const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
     const [userDetail, setUserDetail] = useState({});
@@ -15,7 +15,7 @@ const UserTable = ({ dataUser, loadUser }) => {
         {
             title: "STT",
             render: (id, record, index) => {
-                return <>{index + 1}</>;
+                return <>{index + 1 + pageSize * (current - 1)}</>;
             },
         },
         {
@@ -61,10 +61,41 @@ const UserTable = ({ dataUser, loadUser }) => {
             ),
         },
     ];
+    const onChange = (pagination, filters, sorter, extra) => {
+        console.log(">>>>Check ", { pagination, filters, sorter, extra });
+        if (pagination && pagination.current) {
+            if (+pagination.current !== +current) {
+                setCurrent(+pagination.current);
+            }
+        }
+        if (pagination && pagination.pageSize) {
+            if (+pagination.pageSize !== +pageSize) {
+                setPageSize(+pagination.pageSize);
+            }
+        }
+    };
 
     return (
         <>
-            <Table columns={columns} dataSource={dataUser} rowKey="_id" />
+            <Table
+                columns={columns}
+                dataSource={dataUser}
+                rowKey="_id"
+                pagination={{
+                    current: current,
+                    pageSize: pageSize,
+                    showSizeChanger: true,
+                    total: total,
+                    showTotal: (total, range) => {
+                        return (
+                            <div>
+                                {range[0]} - {range[1]} tren {total}rows
+                            </div>
+                        );
+                    },
+                }}
+                onChange={onChange}
+            />
             <UpdateUserModal
                 setIsModalUpdateOpen={setIsModalUpdateOpen}
                 isModalUpdateOpen={isModalUpdateOpen}
