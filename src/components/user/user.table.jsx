@@ -76,7 +76,7 @@ const UserTable = ({ dataUser, loadUser, current, pageSize, total, setCurrent, s
     };
 
     return (
-        <>
+        <div style={{ marginBottom: "20px" }}>
             <Table
                 columns={columns}
                 dataSource={dataUser}
@@ -110,7 +110,7 @@ const UserTable = ({ dataUser, loadUser, current, pageSize, total, setCurrent, s
                 setIsShowDetail={setIsShowDetail}
                 loadUser={loadUser}
             />
-        </>
+        </div>
     );
 };
 
