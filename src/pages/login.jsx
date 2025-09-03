@@ -1,9 +1,11 @@
 import { Form, notification, Row, Col, Input, Button, Divider, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserAPI } from "../services/api.service";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../components/context/auth.context";
 
 const LoginPage = () => {
+    const { setUser } = useContext(AuthContext);
     const [form] = Form.useForm();
     const [isLoading, setIsLoading] = useState(false);
     let navigate = useNavigate();
@@ -19,6 +21,8 @@ const LoginPage = () => {
                 message: "Login User",
                 description: "Dang nhap thanh cong ",
             });
+            localStorage.setItem("access_token", res.data.access_token);
+            setUser(res.data.user);
             navigate("/");
         } else {
             notification.error({

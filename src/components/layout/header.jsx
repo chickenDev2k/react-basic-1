@@ -10,8 +10,11 @@ import {
     SettingOutlined,
     UsergroupDeleteOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/auth.context";
 const Header = () => {
+    const { user } = useContext(AuthContext);
+    console.log(">>>Check user ", user);
     const [current, setCurrent] = useState("");
     const onClick = (e) => {
         "click ", e;
