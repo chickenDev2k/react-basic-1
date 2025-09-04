@@ -11,7 +11,6 @@ const LoginPage = () => {
     let navigate = useNavigate();
 
     const onFinish = async (values) => {
-        console.log(values);
         //call login api
 
         setIsLoading(true);
@@ -23,6 +22,7 @@ const LoginPage = () => {
             });
             localStorage.setItem("access_token", res.data.access_token);
             setUser(res.data.user);
+
             navigate("/");
         } else {
             notification.error({
@@ -46,7 +46,11 @@ const LoginPage = () => {
                         <Input />
                     </Form.Item>
                     <Form.Item label="Password" name="password">
-                        <Input.Password />
+                        <Input.Password
+                            onKeyDown={(event) => {
+                                if (event.key === "Enter") form.submit();
+                            }}
+                        />
                     </Form.Item>
                 </Form>
                 <Row justify={"space-between"}>

@@ -22,7 +22,7 @@ const UserPage = () => {
             setTotal(res.data.meta.total);
         }
     };
-    console.log(">>>Check", pageSize);
+
     return (
         <div>
             <UserForm loadUser={loadUser} />

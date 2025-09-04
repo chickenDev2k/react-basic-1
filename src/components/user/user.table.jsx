@@ -62,7 +62,6 @@ const UserTable = ({ dataUser, loadUser, current, pageSize, total, setCurrent, s
         },
     ];
     const onChange = (pagination, filters, sorter, extra) => {
-        console.log(">>>>Check ", { pagination, filters, sorter, extra });
         if (pagination && pagination.current) {
             if (+pagination.current !== +current) {
                 setCurrent(+pagination.current);
