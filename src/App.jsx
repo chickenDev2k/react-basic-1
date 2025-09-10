@@ -5,27 +5,42 @@ import { Outlet } from "react-router-dom";
 import { getAccountAPI } from "./services/api.service";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./components/context/auth.context";
+import { Spin } from "antd";
 
 const App = () => {
-    const { setUser } = useContext(AuthContext);
+    const { setUser, isAppLoading, setIsAppLoading } = useContext(AuthContext);
     const fetchUserInfor = async () => {
         const res = await getAccountAPI();
         if (res.data) {
             //success
-            console.log(">>>Check user data", res.data);
             setUser(res.data.user);
         }
+        setIsAppLoading(false);
     };
     useEffect(() => {
         fetchUserInfor();
     }, []);
     return (
         <>
-            <Header />
+            {isAppLoading === true ? (
+                <div
+                    style={{
+                        position: "fixed",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%,-50%)",
+                    }}>
+                    <Spin />
+                </div>
+            ) : (
+                <>
+                    <Header />
 
-            <Outlet />
+                    <Outlet />
 
-            <Footer />
+                    <Footer />
+                </>
+            )}
         </>
     );
 };
