@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Drawer, Input, notification } from "antd";
 import { Button } from "antd/es/radio";
-import { handleUploadFile, updateUserAvatarAPI } from "../../services/api.service";
+import { handleUploadFile, updateUserAvatarAPI } from "../../services/user.api.service";
 
 const ViewUserDetail = ({ userDetail, setUserDetail, isShowDetail, setIsShowDetail, loadUser }) => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -32,7 +32,6 @@ const ViewUserDetail = ({ userDetail, setUserDetail, isShowDetail, setIsShowDeta
             //success
             const newAvatar = resUpload.data.fileUploaded;
             //upload user
-            console.log(">>>check newAvatar", newAvatar);
 
             //call api with axios
             const resUpdateUserAvatar = await updateUserAvatarAPI(
@@ -68,7 +67,7 @@ const ViewUserDetail = ({ userDetail, setUserDetail, isShowDetail, setIsShowDeta
 
         //update
     };
-    console.log("selectedFIle>>>>>", selectedFile);
+
     preview;
     return (
         <>

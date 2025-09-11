@@ -1,5 +1,5 @@
 import { Button, notification, Popconfirm } from "antd";
-import { deleteUserAPI } from "../../services/api.service";
+import { deleteUserAPI } from "../../services/user.api.service";
 import { DeleteOutlined } from "@ant-design/icons";
 
 const DeleteUser = ({ userDetail, loadUser }) => {
