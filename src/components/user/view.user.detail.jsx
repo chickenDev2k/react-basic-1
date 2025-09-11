@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Drawer, Input, notification } from "antd";
 import { Button } from "antd/es/radio";
-import { handleUploadFile, updateUserAvatarAPI } from "../../services/api.service";
+import { handleUploadFile, updateUserAvatarAPI } from "../../services/user.api.service";
 
 const ViewUserDetail = ({ userDetail, setUserDetail, isShowDetail, setIsShowDetail, loadUser }) => {
     const [selectedFile, setSelectedFile] = useState(null);

@@ -15,7 +15,7 @@ import {
 } from "@ant-design/icons";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
-import { logoutAPI } from "../../services/api.service";
+import { logoutAPI } from "../../services/user.api.service";
 const Header = () => {
     const { user, setUser } = useContext(AuthContext);
     console.log(">>>Check user", user);

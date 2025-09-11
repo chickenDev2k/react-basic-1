@@ -1,6 +1,6 @@
 import { Form, notification, Row, Col, Input, Button, Divider, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUserAPI } from "../services/api.service";
+import { loginUserAPI } from "../services/user.api.service";
 import { useContext, useState } from "react";
 import { AuthContext } from "../components/context/auth.context";
 

@@ -1,7 +1,7 @@
 import { Input, Modal, notification } from "antd";
 import { useEffect, useState } from "react";
 
-import { updateUserAPI } from "../../services/api.service";
+import { updateUserAPI } from "../../services/user.api.service";
 
 const UpdateUserModal = ({
     isModalUpdateOpen,
