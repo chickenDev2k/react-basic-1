@@ -18,7 +18,7 @@ import { AuthContext } from "../context/auth.context";
 import { logoutAPI } from "../../services/user.api.service";
 const Header = () => {
     const { user, setUser } = useContext(AuthContext);
-    console.log(">>>Check user", user);
+
     const [current, setCurrent] = useState("");
     const onClick = (e) => {
         "click ", e;

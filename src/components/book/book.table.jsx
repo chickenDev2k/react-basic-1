@@ -1,23 +1,35 @@
-import { Space, Table, Tag } from "antd";
-import { BookForm } from "./book.form.jsx";
+import { Drawer, Modal, Pagination, Space, Table, Tag } from "antd";
 import { useEffect, useState } from "react";
 import { getAllBookAPI } from "../../services/book.api.service.js";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import BookDetail from "./book.view.detail.jsx";
+import { BookForm } from "./book.form.jsx";
 
 const BookTable = (props) => {
-    const bookData = props.bookData;
+    const { bookData, current, pageSize, total, setCurrent, setPageSize, setTotal, fetchBooks } =
+        props;
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const [bookDetail, setBookDetail] = useState({});
     const columns = [
         {
             title: "STT",
             dataIndex: "stt",
             key: "stt",
-            render: (text) => <a>{text}</a>,
+            render: (text, record, index) => <>{index + 1 + pageSize * (current - 1)}</>,
         },
         {
             title: "ID",
             dataIndex: "id",
             key: "id",
-            render: (text) => <a>{text}</a>,
+            render: (text, record) => (
+                <a
+                    onClick={() => {
+                        setOpenDrawer(true);
+                        setBookDetail(record);
+                    }}>
+                    {text}
+                </a>
+            ),
         },
         {
             title: "Title",
@@ -55,11 +67,46 @@ const BookTable = (props) => {
         },
     ];
 
+    const onChange = (value) => {
+        if (value?.current) {
+            setCurrent(+value.current);
+        }
+        if (value?.pageSize) {
+            setPageSize(+value.pageSize);
+        }
+    };
+    const onCloseDrawer = () => {
+        setOpenDrawer(false);
+    };
     return (
         <div>
-            <BookForm />
-            <Table columns={columns} dataSource={bookData} />
+            <BookForm fetchBooks={fetchBooks} />
+            <Table
+                columns={columns}
+                dataSource={bookData}
+                pagination={{
+                    current: `${current}`,
+                    pageSize: `${pageSize}`,
+                    total: `${total}`,
+                    showSizeChanger: true,
+                    showTotal: (total, range) => {
+                        return (
+                            <div>
+                                {range[0]} - {range[1]} tren {total}rows
+                            </div>
+                        );
+                    },
+                }}
+                onChange={onChange}
+                rowKey="id"
+            />
+            <BookDetail
+                onCloseDrawer={onCloseDrawer}
+                openDrawer={openDrawer}
+                bookDetail={bookDetail}
+            />
         </div>
     );
 };
+
 export default BookTable;
