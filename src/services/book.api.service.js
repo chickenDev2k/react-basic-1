@@ -40,4 +40,32 @@ const createBookAPI = async (title, author, price, quantity, category, thumbnail
     const res = await axios.post(URL_BACKEND, data, config);
     return res.data;
 };
-export { getAllBookAPI, handleUploadFile, createBookAPI };
+const updateBookAPI = async (title, author, price, quantity, category, thumbnail, id) => {
+    const token = localStorage.getItem("access_token");
+    const data = {
+        _id: id,
+        thumbnail: thumbnail,
+        mainText: title,
+        author: author,
+        price: price,
+        quantity: quantity,
+        category: category,
+    };
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    const URL_BACKEND = `${BASE_URL}/api/v1/book`;
+    const res = await axios.put(URL_BACKEND, data, config);
+    return res.data;
+};
+
+const deleteBookAPI = async (id) => {
+    const token = localStorage.getItem("access_token");
+    const config = {
+        headers: { Authorization: `Bearer ${token}` },
+    };
+    const URL_BACKEND = `${BASE_URL}/api/v1/book/${id}`;
+    const res = await axios.delete(URL_BACKEND, config);
+    return res.data;
+};
+export { getAllBookAPI, handleUploadFile, createBookAPI, updateBookAPI, deleteBookAPI };

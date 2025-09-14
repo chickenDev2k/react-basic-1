@@ -3,7 +3,7 @@ import { Drawer } from "antd";
 const BookDetail = (props) => {
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
     const { onCloseDrawer, openDrawer, bookDetail } = props;
-    console.log(bookDetail);
+
     return (
         <Drawer
             title="BookDetail"
